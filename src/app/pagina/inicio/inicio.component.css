@@ -1,0 +1,7 @@
+.background-image {
+    background-image: url('C:/Users/diego/OneDrive/Documentos/Avanzada/clinicaimg.jpg');
+    background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+    background-position: center; /* Centra la imagen horizontalmente y verticalmente */
+    height: 100vh; /* Ajusta la altura al 100% del viewport */
+  }
+  

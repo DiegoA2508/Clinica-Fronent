@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0" ><i class="fa-solid fa-user-plus me-3"></i></h5>
+    </div>
+
+    <div class="card-body p-5">
+        <form #f="ngForm" (ngSubmit)="ingresar()">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Correo Electrónico</label>
+                <div class="col-sm-10">
+                    <input #correoElectronico = "ngModel" [ngClass]="correoElectronico.invalid && (correoElectronico.dirty || correoElectronico.touched) ? 'is-invalid' : '' " type="text" name="correoElectronico" class="form-control" required [(ngModel)]="loginPacienteDTO" />
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Contraseña</label>
+                <div class="col-sm-10">
+                    <input #password = "ngModel" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '' " type="text" name="password" class="form-control" required [(ngModel)]="loginPacienteDTO" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
