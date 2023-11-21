@@ -1,5 +1,10 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { Alerta } from 'src/app/modelo/alerta';
+import { LoginDTO } from 'src/app/modelo/login-dto';
 import { LoginPacienteDTO } from 'src/app/modelo/login-paciente-dto';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +13,25 @@ import { LoginPacienteDTO } from 'src/app/modelo/login-paciente-dto';
 })
 export class LoginComponent {
 
-  loginPacienteDTO = LoginPacienteDTO;
+  loginPacienteDTO: LoginPacienteDTO;
+  loginDTO: LoginDTO;
+  alerta!:Alerta;
 
-  constructor(){
-    this.loginPacienteDTO = LoginPacienteDTO;
+  constructor(private authService: AuthService, private tokenService: TokenService){
+    this.loginPacienteDTO = new LoginPacienteDTO();
+    this.loginDTO = new LoginDTO();
   }
 
-  public ingresar(){
-    console.log(this.loginPacienteDTO);
+  public login(){
+
+    this.authService.login(this.loginDTO).subscribe({
+      next: data=> {
+        this.tokenService.login(data.respuesta.token);
+      },
+      error: error => {
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+      }
+    });
   }
 
 }

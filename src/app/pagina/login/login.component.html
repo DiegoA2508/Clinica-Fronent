@@ -4,20 +4,24 @@
     </div>
 
     <div class="card-body p-5">
-        <form #f="ngForm" (ngSubmit)="ingresar()">
+        <form #f="ngForm" (ngSubmit)="login()">
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Correo Electrónico</label>
                 <div class="col-sm-10">
-                    <input #correoElectronico = "ngModel" [ngClass]="correoElectronico.invalid && (correoElectronico.dirty || correoElectronico.touched) ? 'is-invalid' : '' " type="text" name="correoElectronico" class="form-control" required [(ngModel)]="loginPacienteDTO" />
+                    <input #correoElectronico = "ngModel" [ngClass]="correoElectronico.invalid && (correoElectronico.dirty || correoElectronico.touched) ? 'is-invalid' : '' " type="email" name="correoElectronico" class="form-control" required [(ngModel)]="loginPacienteDTO.correo" />
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Contraseña</label>
                 <div class="col-sm-10">
-                    <input #password = "ngModel" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '' " type="text" name="password" class="form-control" required [(ngModel)]="loginPacienteDTO" />
+                    <input #password = "ngModel" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '' " type="password" name="password" class="form-control" required [(ngModel)]="loginPacienteDTO.password" />
                 </div>
             </div>
+
+            <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
+                <i class="fa-solid fa-circle-plus me-1"></i>Iniciar Sesion
+            </button>
 
         </form>
     </div>

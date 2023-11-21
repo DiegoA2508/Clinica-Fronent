@@ -29,7 +29,12 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Foto: </label>
                 <div class="col-sm-10">
-                    <input type="file" name="urlFoto" class="form-control" required (change)="onFileChange($event)" />
+                    <input type="file" class="form-control" name="foto" (change)="onFileChange($event)" />
+                </div>
+                <div class="col-sm-2 ">
+                    <button type="submit" [disabled]=" " class="btn btn-primary " (click)="subirImagen()">
+                        <i class="fa-solid fa-cloud-arrow-up me-2"></i>Subir Foto
+                    </button>
                 </div>
             </div>
         
@@ -87,21 +92,25 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Contraseña: </label>
                 <div class="col-sm-10">
-                    <input #password="ngModel" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''" type="text" password="password" class="form-control" required [(ngModel)]="registroPacienteDTO.password" />
+                    <input #password="ngModel" [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''" type="password" password="password" class="form-control" required [(ngModel)]="registroPacienteDTO.password" />
                 </div>
             </div>
         
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Repetir Contraseña: </label>
                 <div class="col-sm-10">
-                    <input #confirmaPassword="ngModel" [ngClass]="confirmaPassword.invalid && (confirmaPassword.dirty || confirmaPassword.touched) ? 'is-invalid' : ''" type="text" confirmaPassword="confirmaPassword" class="form-control" required [(ngModel)]="registroPacienteDTO.confirmaPassword" />
+                    <input #confirmaPassword="ngModel" [ngClass]="confirmaPassword.invalid && (confirmaPassword.dirty || confirmaPassword.touched) ? 'is-invalid' : ''" type="password" confirmaPassword="confirmaPassword" class="form-control" required [(ngModel)]="registroPacienteDTO.confirmaPassword" />
                     <div class="alert alert-danger" role="alert" *ngIf="!sonIguales()">Las contraseñas no coinciden</div>
                 </div>
             </div>
         
-            <button class="btn btn-primary" type="submit" [disabled]="f.invalid || !sonIguales()">
-                <i class="fa-solid fa-circle-plus me-1"></i>Registrarse
+            <button (click)="registrar()">
+                <button class="btn btn-primary" type="submit" [disabled]="f.invalid || !sonIguales()">
+                    <i class="fa-solid fa-circle-plus me-1"></i>Registrarse
+                </button>
             </button>
+
+            <app-alerta [alerta]="alerta"></app-alerta>
         
         </form>
     </div>
